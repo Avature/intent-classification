@@ -2,7 +2,7 @@
 
 This repository contains a test set designed for intent classification within the Human Resources domain.
 
-The shared [**test set**](./test_set/intent_classification_system_test_set.json) encompasses 34 different intents,
+The shared [**test set**](./test_set/intent_classification_fg_test_set.json) encompasses 34 different intents,
 meticulously
 identified by experts through iterative analysis of sample conversations in English.
 The data is stored in JSON format, with a dictionary mapping each intent to its corresponding samples. Company names are
@@ -11,9 +11,15 @@ anonymized and replaced by the placeholder `[company_name]`.
 The procedure involved the collaboration of two annotators, achieving an inter-annotator agreement of 92% between them.
 In instances of disagreement, an adjudicator was consulted to render the final decision.
 
+We also provide a [**course-grained test set**](./test_set/intent_classification_cg_test_set.json), which is the result
+collapsing the 34 intents to just 8 labels by following a set
+of custom [transformation rules](./test_set/transformation_rules.json).
+
 ## General Statistics
 
 This section provides statistics on the test set, including the distribution of samples per intent.
+
+For the fine-grained test set:
 
 ```json
 {
@@ -57,6 +63,31 @@ This section provides statistics on the test set, including the distribution of 
       "ask_name": 15,
       "goodbye": 15,
       "greet": 13
+    }
+  },
+  "sample_to_dup_intents": {},
+  "intent_to_dup_samples": {}
+}
+```
+
+For the course-grained test set:
+
+```json
+{
+  "global_metrics": {
+    "total_intents": 8,
+    "total_samples": 1199,
+    "total_intents_with_entities": 0,
+    "total_entities": 0,
+    "intent_to_samples_dist": {
+      "faq": 743,
+      "small_talk": 235,
+      "job_question": 58,
+      "talk_to_human": 47,
+      "job_search": 45,
+      "negative_ack": 28,
+      "exit_form": 26,
+      "positive_ack": 17
     }
   },
   "sample_to_dup_intents": {},
